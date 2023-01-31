@@ -38,6 +38,7 @@ runs:
           exit 1
         fi
 
+        git checkout $BRANCH_NAME
         echo "Check that we are on FROM_STEP"
         if [ "$(cat .github/script/STEP)" != $FROM_STEP ]
         then
