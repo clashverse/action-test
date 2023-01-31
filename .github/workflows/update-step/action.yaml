@@ -72,18 +72,7 @@ runs:
         git add README.md
         git add .github/script/STEP
         git commit --message="Update to $TO_STEP in STEP and README.md"
-        COMMIT_ID=$(git rev-parse HEAD)
         git push
-
-        echo "If BRANCH_NAME, update that branch as well"
-        if git show-ref --quiet refs/heads/$BRANCH_NAME
-        then
-          git checkout $BRANCH_NAME
-          git cherry-pick $COMMIT_ID
-          git push
-        else
-          echo "Branch $BRANCH_NAME does not exist"
-        fi
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
         FROM_STEP: ${{ inputs.from_step }}
